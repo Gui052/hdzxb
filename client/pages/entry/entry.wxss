@@ -4,48 +4,63 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16rpx;
-  width: 90%;
+  padding: 50rpx;
+  width: 80%; 
   margin: 0 auto;
   background-color: #ffffff00;
   border-radius: 10rpx;
   color: rgb(0, 0, 0);
 }
 
+.info-left{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+.info-left text{
+  font-size: 36rpx;
+  margin-left: 20rpx;
+}
+.score{
+  font-size: 36rpx;
+}
+
 .avatarUrl {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   border: 4rpx solid white;
   border-radius: 50%;
 }
 
-.qr {
-  width: 100rpx;
-  height: 100rpx;
-}
-
 .choose {
+  margin-bottom: 50rpx;
   position: relative;
-  margin-top: 20rpx;
   color: #f6f6f6;
 }
+.choose text{
+  display: block;
+}
 
-.choose view {
+.text-right {
+  /* width: 180rpx; */
   font-weight: bold;
-  font-size: 36rpx;
   position: absolute;
-  left: 70%;
+  left: 60%;
   top: 15%;
+  text-align:right;
+}
+.text-left {
+  /* width: 180rpx; */
+  font-weight: bold;
+  font-size: 40rpx;
+  position: absolute;
+  left: 10%;
+  top: 15%;
+  text-align:left;
 }
 
 .choose image {
-  width: 500rpx;
-  height: 250rpx;
-  border-radius: 10rpx;
-}
-
-.zsjs image{
-  margin-top: 10rps;
-  width: 500rpx;
-  height: 180rpx;
+  width: 600rpx;
+  height: 240rpx;
+  border-radius: 15rpx;
 }

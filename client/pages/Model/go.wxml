@@ -4,7 +4,7 @@
     <view class="dialog__mask"/>
      <view class="dialog__container" style="display:flex;align-items:center;justify-content:center;flex-direction:column;">
         <!--  //此区域自定义视图  -->
-        <view>···正在前往答题区哟···</view>
+        <view>正在快速前往答题区</view>
     </view> 
   </view>
 </template>

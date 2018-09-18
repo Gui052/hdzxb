@@ -77,7 +77,7 @@
   position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 10;background: rgba(0, 0, 0, 0.5);display: none;
 }
 .dialog__container {
-  position: fixed;bottom: 0;width: 750rpx;transform: translateY(150%);transition: all 1s ease;z-index: 11;height:100%;
+  position: fixed;bottom: 0;width: 750rpx;transform: translateY(150%);transition: all 1.5s ease;z-index: 11;height:100%;
 }
 .dialog--show .dialog__container {
   transform: translateY(0);

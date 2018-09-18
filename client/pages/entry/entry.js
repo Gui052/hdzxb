@@ -60,6 +60,14 @@ Page({
 			url: '../fighting_sort/fighting_sort'
 		})
 	},
+  gotoFriends(){
+    wx.showModal({
+      title: '提示',
+      content: '好友对战尚未开放，尽请期待!',
+      showCancel:false
+    })
+  },
+
 	gotoRank() {
 		wx.navigateTo({
 			url: '../rank/rank'
