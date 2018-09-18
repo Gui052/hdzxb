@@ -1,0 +1,17 @@
+@import "../../utils/base_bg.wxss";
+.title{
+  text-align: center;
+  color: rgb(85, 85, 85)
+}
+.sort{
+  width: 80%;
+  height: 80rpx;
+  margin: 30rpx auto;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 38rpx;
+  border: 4rpx solid rgb(85, 85, 85);
+  border-radius: 10rpx;
+  background: transparent;
+  color: rgb(85, 85, 85);
+}

@@ -1,0 +1,8 @@
+<template name="diaCenterView">
+  <view class="dialog {{ showCenterDialog ? 'dialog--show' : '' }}">
+    <view class="dialog__mask"/>
+     <view class="dialog__container" style="display:flex;align-items:center;justify-content:center;flex-direction:column;" bindtap='onClickdiaCenterView'> 
+        <image class='trophy' src='../../imgs/Trophy.png'></image>
+    </view> 
+  </view>
+</template>

@@ -1,0 +1,14 @@
+
+<template name="diaCenterView">
+  <view class="dialog {{ showCenterDialog ? 'dialog--show' : '' }}">
+    <view class="dialog__mask"/>
+     <view class="dialog__container" style="display:flex;align-items:center;justify-content:center;flex-direction:column;"> 
+
+        <!--  //此区域自定义视图  -->
+        
+        <image class='logo' src='../../imgs/zsjs.png'></image>
+        <button open-type="getUserInfo" type="primary" class="to-login" bindgetuserinfo="onGotUserInfo">去答题</button>
+
+    </view> 
+  </view>
+</template>

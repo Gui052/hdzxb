@@ -1,0 +1,22 @@
+
+<view class='container'>
+  <view class='person-infor'>
+    <image src='{{userInfo.avatarUrl}}' class='avatarUrl'></image>
+    <view style='text-align:center;'>
+      <view>{{userInfo.nickName}}</view>
+      <view>得分:{{score}}</view>
+    </view>
+    <image src='../../imgs/60.png' class='qr' bindtap='get_qr_address'></image> <!--注意不要跳转到web_view-->
+  </view>
+  <view class='pictures'>
+  <view class='zsjs'>
+      <image src='../../imgs/zsjs.png'></image>
+    </view>
+    <view class='choose' bindtap='gotoFighting'>
+      <image src='../../imgs/entry_fighting.png'></image>
+    </view>
+    <view class='choose' bindtap='gotoRank'>
+      <image src='../../imgs/entry_rank.png'></image>
+    </view>
+  </view>
+</view>
