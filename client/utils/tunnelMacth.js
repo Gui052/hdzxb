@@ -1,6 +1,8 @@
 const util = require('./util.js')
+var isMatch = false //记录匹是否已经匹配
 
 function match(page, app, opt) {
+  isMatch = false //初始化是否匹配
   const that = page
   if (app.appData.tunnelStatus !== 'close') {
     app.tunnel.close()
@@ -60,23 +62,27 @@ function match(page, app, opt) {
   }
 
   tunnel.on('matchNotice', (res) => {//监听匹配成功
-    console.log('res', res)
-    let user_me, user_others
-    if (res.player1.openId === that.data.openId){
-      user_me = res.player1
-      user_others=res.player2
-    }else{
-      user_me = res.player2
-      user_others = res.player1
-    }
-    wx.setStorageSync('user_me', user_me)
-    wx.setStorageSync('user_others', user_others)
-    that.setData({ status: user_me.nickName + ' VS ' + user_others.nickName })
-    setTimeout(goto_fighting_room, 2000)//延迟1s跳转到战队页面
-    function goto_fighting_room() {
-      wx.redirectTo({ //navigateTo不会会卸载该页面，只是将当前页面隐藏了,redirectTo会销毁当前页面
-				url: `../fighting_room/fighting_room?roomName=${res.player1.roomName}`
-      })
+    if (isMatch==false){
+      isMatch = true
+
+      console.log('res', res)
+      let user_me, user_others
+      if (res.player1.openId === that.data.openId){
+        user_me = res.player1
+        user_others=res.player2
+      }else{
+        user_me = res.player2
+        user_others = res.player1
+      }
+      wx.setStorageSync('user_me', user_me)
+      wx.setStorageSync('user_others', user_others)
+      that.setData({ status: user_me.nickName + ' VS ' + user_others.nickName })
+      setTimeout(goto_fighting_room, 2000)//延迟1s跳转到战队页面
+      function goto_fighting_room() {
+        wx.redirectTo({ //navigateTo不会会卸载该页面，只是将当前页面隐藏了,redirectTo会销毁当前页面
+          url: `../fighting_room/fighting_room?roomName=${res.player1.roomName}`
+        })
+      }
     }
   })
 }

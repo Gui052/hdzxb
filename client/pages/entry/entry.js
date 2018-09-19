@@ -64,6 +64,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '好友对战尚未开放，尽请期待!',
+      confirmText:'我知道啦',
       showCancel:false
     })
   },

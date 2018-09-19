@@ -2,12 +2,12 @@
 
 <wxs module="m1">
 var getRank = function(array,score) {
-  var rankInt = score/30
-  if(parseInt(rankInt)>9){
-    return "斗帝";
-  }else{
-    return array[rankInt];
-  }
+var rankInt = parseInt(score/30)
+if(rankInt>9){
+return array[9];
+}else{
+return array[rankInt];
+}
 }
 module.exports.getRank = getRank;
 </wxs>

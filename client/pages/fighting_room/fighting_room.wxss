@@ -5,8 +5,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 60rpx;
+  padding: 40rpx 60rpx;
   font-size: 32rpx;
+  color: #000;
 }
 .header view{
   text-align: center;
@@ -21,14 +22,17 @@
 
 .header .countdown {
   font-size: 70rpx;
-  color: rgb(255, 255, 255);
   font-weight: bold;
+}
+.countdown{
+  color: #000;
 }
 
 .animated {
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
+
 
 .lightSpeedIn-left {
   animation-name: lightSpeedIn-left;
@@ -86,13 +90,21 @@
 
 .body {
   text-align: center;
+  margin: auto;
 }
 
-.body .title {
-  width: 80%;
-  margin: 80rpx auto;
+.title{
+  font-size: 36rpx;
+    width: 80%;
+    display: block;
+    height: 180rpx;
+    color: #000;
+    margin: 20rpx auto auto auto;
 }
-
+.reci{
+  color: #000;
+  font-size: 32rpx;
+}
 .body .content {
   display: flex;
   justify-content: space-between;
@@ -103,12 +115,13 @@
 .answer {
   display: flex;
   justify-content: space-between;
-  color: #3883fa;
-  background:rgb(85, 85, 85);
+  font-size: 28rpx;
+  color: #000;
+  background:#ffffff;
   border-radius: 20rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  margin: 40rpx 0;
+  height: 85rpx;
+  line-height: 85rpx;
+  margin-top: 50rpx;
   position: relative;
 }
 
@@ -118,13 +131,13 @@
 
 .right {
   /*选择正确的答案颜色*/
-  background: #3ede58;
+  background: #86e75c;
   color: #fff;
 }
 
 .error {
   /*选择错误的答案颜色*/
-  background: #e53117;
+  background: #ed5d6a;
   color: #fff;
 }
 
@@ -137,25 +150,31 @@
   font-weight: bold;
   font-size: 50rpx;
   position: absolute;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 85rpx;
+  line-height: 85rpx;
   left: 5%;
 }
 
 .process {
-  width: 28rpx;
-  height: 560rpx;
+  width: 20rpx;
+  height: 500rpx;
   border-radius: 17rpx;
-  border: 6rpx solid #89d693;
-  background: #15120b;
+  border: 6rpx solid #ffffff;
+  background: #ffffff;
   transform: rotate(-180deg);
-  margin: 0 30rpx;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+  color: #000;
+}
+.scores{
+  color: #000;
+  margin-bottom: 20rpx;
 }
 
 .process_son {
-  width: 28rpx;
+  width: 20rpx;
   border-radius: 14rpx;
-  background: #3ede58;
+  background: #fec36d;
 }
 
 .summarize {

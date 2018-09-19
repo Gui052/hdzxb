@@ -2,6 +2,9 @@ const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
 const util = require('../../utils/util.js')
 const app = getApp()
+
+var queindexs = 10;
+
 const option = {
 	CHOICE_DELAY_SHOW: 1500,//选项延时1.5S显示
 }
@@ -30,6 +33,11 @@ Page({
 		sendNumber: 0,//每一轮的答题次数不能超过1次
 	},
 	onLoad(options) {
+    //初始化时候设定题目
+    queindexs = 10
+    this.setData({
+      queindex: queindexs
+    })
 		app.appData.fromClickId = options.currentClickId
 		app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
 		wx.showShareMenu({
@@ -91,10 +99,13 @@ Page({
 		let getNextQuestions, timerCountdown, timerReset  //定义倒计时定时器，定义重置定时器(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
 		tunnel.on('sendQuestion', (res) => {
 			console.log('收到题目', res)
+
 			let question = res.question
+
 			if (Object.getOwnPropertyNames(question).length) {
-				question.answer = JSON.parse(question.answer)//将答案转换为js对象
+        question.answer = JSON.parse(question.answer)//将答案转换为js对象
 			}
+
 			//显示对手的答题状态
 			if (res.choicePlayer1[0] !== that.data.userInfo_me.openId) {
 				that.setData({
@@ -198,6 +209,12 @@ Page({
 	answer(e) {//开始答题
 		const that = this
 		if (!that.data.localClick) {  //防止重新选择答案
+      //题目数量减少
+      that.setData({
+        queindex: queindexs
+      })
+      queindexs--;
+
 			if (e.currentTarget.dataset.right) {//判断答案是否正确
 				that.setData({
 					clickIndex: e.currentTarget.dataset.index,
@@ -276,5 +293,5 @@ Page({
 				zoomOut: 'zoomOut'
 			})
 		}, 1500)
-	}
+	},
 })

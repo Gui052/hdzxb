@@ -1,6 +1,23 @@
 <view class='title'>选择您擅长的领域开始答题吧</view>
-<view>
-  <button wx:for="{{question_sort}}" class='sort' bindtap='gotoFightingMatch' data-sortid='{{item.id}}'>
+<view class='sort'>
+  <!-- <button wx:for="{{question_sort}}" class='sort' bindtap='gotoFightingMatch' data-sortid='{{item.id}}'>
     {{item.sort}}
-  </button>
+  </button> -->
+
+  <view class='select'>
+    <view class='sort' >
+      <text bindtap='gotoFightingMatch' data-sortid='1'>专业知识</text>
+      <image src='../../imgs/zhuanye.png'></image>
+    </view>
+
+    <view class='sort' >
+      <text bindtap='gotoFightingMatch' data-sortid='2'>校规校纪</text>
+      <image src='../../imgs/xiaogui.png'></image>
+    </view>
+
+    <view class='sort' >
+      <text bindtap='gotoFightingMatch' data-sortid='3'>人文知识</text>
+      <image src='../../imgs/renwen.png'></image>
+    </view>
+  </view>
 </view>

@@ -25,18 +25,12 @@
   font-size: 36rpx;
 }
 
-.avatarUrl {
-  width: 80rpx;
-  height: 80rpx;
-  border: 4rpx solid white;
-  border-radius: 50%;
-}
-
 .choose {
   margin-bottom: 50rpx;
   position: relative;
   color: #f6f6f6;
 }
+
 .choose text{
   display: block;
 }
@@ -49,6 +43,7 @@
   top: 15%;
   text-align:right;
 }
+
 .text-left {
   /* width: 180rpx; */
   font-weight: bold;
