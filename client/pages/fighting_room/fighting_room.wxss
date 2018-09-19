@@ -208,5 +208,5 @@
 }
 
 .animated_zoomIn {
-  animation-duration: 1.5s;
+  animation-duration: 1s;
 }

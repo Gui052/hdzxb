@@ -100,6 +100,12 @@ Page({
 		tunnel.on('sendQuestion', (res) => {
 			console.log('收到题目', res)
 
+      //题目数量减少
+      that.setData({
+        queindex: queindexs
+      })
+      queindexs--;
+
 			let question = res.question
 
 			if (Object.getOwnPropertyNames(question).length) {
@@ -209,11 +215,6 @@ Page({
 	answer(e) {//开始答题
 		const that = this
 		if (!that.data.localClick) {  //防止重新选择答案
-      //题目数量减少
-      that.setData({
-        queindex: queindexs
-      })
-      queindexs--;
 
 			if (e.currentTarget.dataset.right) {//判断答案是否正确
 				that.setData({
