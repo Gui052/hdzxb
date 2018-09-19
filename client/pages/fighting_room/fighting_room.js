@@ -3,7 +3,7 @@ const config = require('../../config')
 const util = require('../../utils/util.js')
 const app = getApp()
 
-var queindexs = 10;
+var queindexs = 10
 
 const option = {
 	CHOICE_DELAY_SHOW: 1500,//选项延时1.5S显示
@@ -99,13 +99,6 @@ Page({
 		let getNextQuestions, timerCountdown, timerReset  //定义倒计时定时器，定义重置定时器(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
 		tunnel.on('sendQuestion', (res) => {
 			console.log('收到题目', res)
-
-      //题目数量减少
-      that.setData({
-        queindex: queindexs
-      })
-      queindexs--;
-
 			let question = res.question
 
 			if (Object.getOwnPropertyNames(question).length) {
@@ -189,6 +182,12 @@ Page({
 				//（重新）开始倒计时
 				clearInterval(timerCountdown)//获取新题目后,倒计时定时器清空(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
 				let countdown = that.data.countdown;
+
+        //给题目数量赋值
+        that.setData({
+          queindex: queindexs > 0 ? queindexs : 0
+        })
+
 				setTimeout(() => {//2S后显示选项和开始倒计时
 					that.setData({ animate_showChoice: 'fadeIn' })
 					timerCountdown = setInterval(function () {
@@ -215,6 +214,8 @@ Page({
 	answer(e) {//开始答题
 		const that = this
 		if (!that.data.localClick) {  //防止重新选择答案
+      //题目数量减少，赋值和减少不应该同步
+      queindexs--
 
 			if (e.currentTarget.dataset.right) {//判断答案是否正确
 				that.setData({
@@ -258,6 +259,7 @@ Page({
 		that.setData({
 			sendNumber,
 		})
+
 	},
 	//异常处理：重新连接、网络错误
 	exceptionalListener() {
