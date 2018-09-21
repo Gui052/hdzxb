@@ -28,10 +28,11 @@ Page({
 		const that = this;
 		return {
 			title: '谁才是华电大学霸？比比看吧！',
-			path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,
+			// path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,
+      path: `/pages/login/login`,
 			success: (res) => {
 				//转发时向用户关系表中更新一条转发记录(个人为person，群为GId)。
-				require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res)
+				// require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res) //由于好友系统失效，暂时先不更新好友关系
 			}
 		}
 	},

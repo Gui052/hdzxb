@@ -3,12 +3,12 @@
 <wxs module="m1">
 var getRank = function(array,score) {
 var rankInt = parseInt(score/30)
-if(rankInt>9){
-return array[9];
-}else{
-return array[rankInt];
-}
-}
+  if(rankInt>9){
+    return array[9];
+    }else{
+    return array[rankInt];
+   }
+  }
 module.exports.getRank = getRank;
 </wxs>
 <view >
@@ -21,43 +21,44 @@ module.exports.getRank = getRank;
     <view wx:if='{{currentTab==0}}' >
       <view wx:for="{{friendsData}}" class='item'>
         <view style='width:10%;font-size:38rpx;'>{{index+1}}</view>
-        <view style='width:30%;'>
-          <image src='{{item.avatarUrl}}'></image>
+        <view style='width:30%;' class='headview'>
+          <image src='{{item.avatarUrl}}'  class='headimg'></image>
         </view>
         <view style='width:70%;'>
           <view class='itemDetail'>
-            <text>{{item.nickName}}</text>
-            <text style='font-size:28rpx;'>来自:{{item.city}}</text>
+            <text style='font-size:36rpx;color:#000'>{{item.nickName}}</text>
+            <text style='font-size:48rpx;color:rgb(255,107,78)'>{{item.score}}分</text>
           </view>
           <view class='itemDetail'>
-            <text>等级：{{m1.getRank(rankName,item.score)}}</text>
-            <text style='font-size:28rpx;'>得分:{{item.score}}</text>
+            <text style='color:rgb(179,179,179)'>from:{{item.city}}</text>
+            <text style='font-size:32rpx;color:rgb(59, 59, 59)'>{{m1.getRank(rankName,item.score)}}</text>
           </view>
         </view>
       </view>
     </view>
 
 
-
-    <view wx:if='{{currentTab==1}}'>
+<view wx:if='{{currentTab==1}}'>
       <view wx:for="{{globalData}}" class='item'>
         <view style='width:10%;font-size:38rpx;'>{{index+1}}</view>
-        <view style='width:30%;'>
-          <image src='{{item.avatarUrl}}'></image>
+        <view style='width:30%;' class='headview'>
+        <image src='../../imgs/{{index+1}}.png' class='winnerpng' wx:if="{{index<3 ? true : false}}"></image>
+          <image src='{{item.avatarUrl}}' class='headimg'></image>
         </view>
         <view style='width:70%;'>
           <view class='itemDetail'>
-            <text>{{item.nickName}}</text>
-            <text style='font-size:28rpx;'>来自:{{item.city?item.city:'保定'}}</text>
+            <text style='font-size:36rpx;color:#000'>{{item.nickName}}</text>
+            <text style='font-size:48rpx;color:rgb(255,107,78)'>{{item.score}}分</text>
           </view>
           <view class='itemDetail'>
-            <text>等级：{{m1.getRank(rankName,item.score)}}</text>
-            <text style='font-size:28rpx;'>得分:{{item.score}}</text>
+            <text style='color:rgb(179,179,179)'>from:{{item.city?item.city:'保定'}}</text>
+            <text style='font-size:32rpx;color:rgb(59, 59, 59)'>{{m1.getRank(rankName,item.score)}}</text>
           </view>
         </view>
       </view>
     </view>
   </view>
+
 
   
 </view>

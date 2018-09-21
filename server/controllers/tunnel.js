@@ -4,7 +4,7 @@ const { mysql } = require('../qcloud')
 const option = {
   MAX_SCORE_GAP: 10000,//匹配的玩家最大分差不能超过10000分
   MATCH_SPEED: 3000,//匹配的频率:每3秒遍历匹配一次
-  QUESTION_NUMBER: 9,//答题数10个
+  QUESTION_NUMBER: 9,//答题数10个，这里从0算起
   SEND_QUESTIONS_DELAY: 3500,//匹配完成后，间隔3.5S后开始向前端发题
   SEND_QUESTION_TIME: 16000,//发题的频率：每16秒发送一题
   PING_PONG_TIME: 6000,//PING-PONG响应的PING发送频率

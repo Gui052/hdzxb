@@ -1,28 +1,30 @@
 <view class='header'>
-  <view class='animated lightSpeedIn-left '>
-    <image src='{{userInfo_me.avatarUrl}}'></image>
-    <view>{{userInfo_me.nickName}}</view>
+  <view class="animated lightSpeedIn-left {{game_over ? 'gameover-left':''}} {{win==1?'winner' : ''}}">
+    <image class='winnerpng' src='../../imgs/winner.png' wx:if="{{win==1}}"></image>
+    <image class='header_img' src='{{userInfo_me.avatarUrl}}'></image>
+    <text>{{userInfo_me.nickName}}</text>
     <view wx:if="{{game_over}}">
-      <text style='font-size:80rpx'>{{scoreMyself}}</text>分</view>
+      <text style='font-size:70rpx'>{{scoreMyself}}</text>分</view>
   </view>
 
   <view class='countdown animated rubberBand' wx:if="{{game_over ? false : true}}">{{countdown}}秒</view>
 
-  <view class='animated lightSpeedIn-right'>
-    <image src='{{userInfo_others.avatarUrl}}'></image>
-    <view>{{userInfo_others.nickName}}</view>
+  <view class="animated lightSpeedIn-right {{game_over ? 'gameover-right':''}} {{win!=2 && win!=1?'winner' : ''}}">
+    <image class='winnerpng' src='../../imgs/winner.png' wx:if="{{win!=1 && win!=2}}"></image>
+    <image class='header_img' src='{{userInfo_others.avatarUrl}}'></image>
+    <text>{{userInfo_others.nickName}}</text>
     <view wx:if="{{game_over}}">
-      <text style='font-size:80rpx'>{{score_others}}</text>分 </view>
+      <text style='font-size:70rpx'>{{score_others}}</text>分 </view>
   </view>
 </view>
 
 <view class='summarize animated flipInX' wx:if="{{game_over}}">
-  <image src="../../imgs/{{win==2? 'PK_equal': win==1?'PK_success' : 'PK_fail'}}.svg" style='width:300rpx;height:300rpx;'></image>
+  <image src="../../imgs/{{win==2? 'PK_equal': win==1?'PK_success' : 'PK_fail'}}.png" style="width:426rpx;height:{{win==1?'220':'134'}}rpx;margin-top:{{win==1?'26':'112'}}rpx;"></image>
 </view>
 
 <view class='body' wx:if="{{game_over ? false : true}}">
   <view class='animated animated_zoomIn {{zoomIn}} {{zoomOut}}' wx:if="{{question ? false : true}}">
-    <image src='../../imgs/VS.svg' style='width:600rpx;height:600rpx;'></image>
+    <!-- <image src='../../imgs/VS.png' style='width:600rpx;height:600rpx;'></image> -->
   </view>
   <view class='reci animated zoomIn' wx:if="{{question}}">第{{queindex}}/10题:</view>
   <view class='title animated zoomIn' wx:if="{{question}}">{{question.ask}}</view>
@@ -53,13 +55,13 @@
   </view>
 </view>
 
-<view class='body_summarize animated flipInX' wx:if="{{game_over ? true : false}}">
+<view class='body_summarize animated flipInX'  wx:if="{{game_over ? true : false}}">
   <view class='exp'>
-    <image src='../../imgs/exp.svg'></image>
-    <view style='margin-left:20rpx;color:#000'>{{win===2 ? '+0' : win===1 ?'+10':'-10'}}</view>
+    <image src='../../imgs/exp.png'></image>
+    <view style='margin-left:20rpx;color:#000'>{{win===2 ? '总积分 +0' : win===1 ?'总积分 +10':'总积分  -10'}}</view>
   </view>
   <view>
-    <button bindtap='continue_fighting'>继续挑战</button>
-    <button open-type='share'>炫耀成绩</button>
+    <button class='overbutton' bindtap='continue_fighting' style='background-color: rgb(255, 255, 255)'>继续挑战</button>
+    <button class='overbutton' open-type='share' style='background-color: rgb(134, 230, 91)'>炫耀成绩</button>
   </view>
 </view>
