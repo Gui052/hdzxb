@@ -63,7 +63,7 @@ Page({
 			success(res) {
 				//转发时向用户关系表中更新一条转发记录(个人为person，群为GId)。
 				// require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res)//好友系统故障，暂时不加入好友关系
-				wx.redirectTo({
+        wx.navigateBack({
 					url: '../entry/entry?islogin=yes'
 				})
 			}

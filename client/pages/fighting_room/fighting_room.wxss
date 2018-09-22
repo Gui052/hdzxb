@@ -130,6 +130,7 @@
   line-height: 85rpx;
   margin-top: 50rpx;
   position: relative;
+  text-align: center;
 }
 
 .answer view {
@@ -260,10 +261,11 @@
   white-space: nowrap;
   text-overflow:ellipsis;
   }
-  
+
 .answeritem{
   display: block;
-  width:100%;
+  width:425rpx;
+  line-height: 85rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow:ellipsis;
