@@ -26,7 +26,7 @@ Page({
     const that = this;
     app.appData.friendsFightingRoom = new Date().getTime().toString() + parseInt(Math.random() * 10000000)//创建:时间+随机数
     return {
-      title: '华电' + this.data.sortName + '领域最学霸？欢迎来战！',
+      title: '谁才是' + this.data.sortName + '领域的王者？比比看吧！',
       path: '/pages/friends_match/friends_match?scene=1044&fromOpenId=' + that.data.openId + '&sortId=' + that.data.sortId + '&sortName=' + that.data.sortName + '&currentClickId=' + app.appData.currentClickId + '&friendsFightingRoom=' + app.appData.friendsFightingRoom,
       success: function (res) {
         that.setData({ showShareButton:false})

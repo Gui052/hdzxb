@@ -3,7 +3,6 @@
 
 .title {
   text-align: center;
-  color: rgb(85, 85, 85)
 }
 
 .sort {
