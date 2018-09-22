@@ -6,8 +6,9 @@
 
         <!--  //此区域自定义视图  -->
         
-        <image class='logo' src='../../imgs/zsjs.png'></image>
-        <button open-type="getUserInfo" type="primary" class="to-login" bindgetuserinfo="onGotUserInfo">去答题</button>
+        <image class='logo' src='../../imgs/login.png'></image>
+        <!-- <button open-type="getUserInfo" type="primary" class="to-login" bindgetuserinfo="onGotUserInfo">我要试试</button> -->
+        <button open-type="getUserInfo" class="to-login" bindgetuserinfo="onGotUserInfo">我要试试</button>
 
     </view> 
   </view>

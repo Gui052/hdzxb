@@ -71,8 +71,8 @@
 
 
 .logo{
-  width: 500rpx;
-  height: 180rpx;
+  width: 750rpx;
+  height: 100%;
 }
 .backgroundViewStyle{
   margin-top:30rpx;background:white;height:500rpx;flex-direction:column;border-top:1rpx solid #e5e5e5;
@@ -82,7 +82,7 @@
 }
 
 .dialog__mask {
-  position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 10;background: rgba(0, 0, 0, 0.5);display: none;
+  position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 10;background: rgba(0, 0, 0, 0.7);display: none;
 }
 .dialog__container {
   position: fixed;bottom: 0;width: 750rpx;transform: translateY(150%);transition: all 1s ease;z-index: 11;height:100%;
@@ -92,4 +92,14 @@
 }
 .dialog--show .dialog__mask {
   display: block;
+}
+
+.to-login{
+  position: absolute;
+  height: 80rpx;
+  width: 360rpx;
+  font-size: 36rpx;
+  top: 55%;
+  background-color: #ff9046;
+  color: #fff;
 }
