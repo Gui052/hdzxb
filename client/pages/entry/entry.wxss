@@ -8,7 +8,7 @@
   width: 80%; 
   margin: 0 auto;
   background-color: #ffffff00;
-  border-radius: 10rpx;
+  
   color: rgb(0, 0, 0);
 }
 
@@ -16,7 +16,14 @@
   display: flex;
   justify-content: center; 
   align-items: center;
+  
 }
+.info-left image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
 .info-left text{
   font-size: 36rpx;
   margin-left: 20rpx;
@@ -58,4 +65,31 @@
   width: 600rpx;
   height: 240rpx;
   border-radius: 15rpx;
+}
+
+
+
+
+.logo{
+  width: 500rpx;
+  height: 180rpx;
+}
+.backgroundViewStyle{
+  margin-top:30rpx;background:white;height:500rpx;flex-direction:column;border-top:1rpx solid #e5e5e5;
+}
+.demoButtonStyle{
+  background-color:#3CB371;width:60%;height:100rpx;color:#fff;
+}
+
+.dialog__mask {
+  position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 10;background: rgba(0, 0, 0, 0.5);display: none;
+}
+.dialog__container {
+  position: fixed;bottom: 0;width: 750rpx;transform: translateY(150%);transition: all 1s ease;z-index: 11;height:100%;
+}
+.dialog--show .dialog__container {
+  transform: translateY(0);
+}
+.dialog--show .dialog__mask {
+  display: block;
 }

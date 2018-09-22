@@ -1,8 +1,0 @@
-<!--pages/login/login.wxml-->
-
-<import src="../Model/login.wxml" />
-<import src="../Model/go.wxml" />
-
-<template is="diaCenterView" data="{{showCenterDialog:showCenterDialog}}"/>
-
-<template is="go" data="{{showCenterDialog:go}}"/>

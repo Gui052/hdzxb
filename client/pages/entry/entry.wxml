@@ -1,3 +1,6 @@
+<import src="../Model/login.wxml" />
+<template is="diaCenterView" data="{{showCenterDialog:showCenterDialog}}"/>
+
 
 <view class='container'>
   <view class='person-infor'>

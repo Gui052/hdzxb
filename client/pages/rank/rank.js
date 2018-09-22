@@ -10,7 +10,7 @@ Page({
     friendsData: [],
     globalData: [],
     loadNumber: 0,//全球排名数据加载次数
-    rankName: ["大一", "大二", "大三", "大四", "研一", "研二", "研三", "博一", "博二","博士后"]
+    rankName: ["大一", "大二", "大三", "大四", "研一", "研二", "研三", "博一", "博二","电力之光"]
   },
   onLoad: function (opt) {
     wx.showShareMenu({

@@ -9,14 +9,38 @@ Page({
 	},
 
 	onLoad(opt) {
-		app.appData.fromClickId = opt.currentClickId
-		app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
+		// app.appData.fromClickId = opt.currentClickId
+		// app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
+    //由于好友系统失效，暂时先不更新好友关系
+    this.setData({
+      showCenterDialog: true,
+    });
+
 		wx.showShareMenu({
 			withShareTicket: true
-		}),
-
-		app.pageGetUserInfo(this, this.getScore)
+		})
 	},
+
+  onGotUserInfo(e) {
+    let that = this
+    if (e.detail.signature) {
+      qcloud.login({
+        success(result) {
+          wx.setStorageSync('user_info_F2C224D4-2BCE-4C64-AF9F-A6D872000D1A', JSON.stringify(result));
+          //开始获取用户信息
+          app.pageGetUserInfo(that, that.getScore)
+        },
+        fail(error) {
+          util.showModel('登录失败', error);
+        }
+      });
+      
+      this.setData({
+        showCenterDialog: false,
+      });
+    }
+  },
+
 
 	onShow() {
 		if (this.data.openId) {
@@ -28,8 +52,8 @@ Page({
 		const that = this;
 		return {
 			title: '谁才是华电大学霸？比比看吧！',
-			// path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,
-      path: `/pages/login/login`,
+			// path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,//由于好友系统失效，暂时先不分享id
+      path: `/pages/entry/entry`,
 			success: (res) => {
 				//转发时向用户关系表中更新一条转发记录(个人为person，群为GId)。
 				// require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res) //由于好友系统失效，暂时先不更新好友关系
@@ -58,7 +82,7 @@ Page({
 	},
 	gotoFighting() {
 		wx.navigateTo({
-			url: '../fighting_sort/fighting_sort'
+      url: `../fighting_sort/fighting_sort`
 		})
 	},
   gotoFriends(){

@@ -8,13 +8,15 @@ Page({
     question_sort: [],
   },
   onLoad (options) {
+
   },
   onShow(){
     this.closeTunnel()//当信道连接或者重连了时，关闭已连接的信道
   },
   gotoFightingMatch(e) {
+    let that = this
     wx.redirectTo({
-      url: `../fighting_match/fighting_match?sortId=${e.currentTarget.dataset.sortid} `
+      url: `../fighting_match/fighting_match?sortId=${e.currentTarget.dataset.sortid}`
     })
     console.log(e.currentTarget.dataset.sortid)
   },

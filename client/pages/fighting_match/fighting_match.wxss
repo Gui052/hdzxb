@@ -4,7 +4,10 @@
   text-align: center;
   padding: 150rpx 0;
 }
-
+.img-contain text{
+  display: block;
+  color: #000;
+}
 .avatarUrl {
   width: 160rpx;
   height: 160rpx;
@@ -16,7 +19,7 @@
   position: relative;
   width: 400rpx;
   height: 400rpx;
-  margin: 100rpx auto;
+  margin: auto;
 }
 
 .power{

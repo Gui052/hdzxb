@@ -1,8 +1,10 @@
 
 <view class='img-contain'>
   <image src='{{userInfo.avatarUrl}}' class='avatarUrl'></image>
+  <text>{{userInfo.nickName}}</text>
 </view>
-<view class='num' style='text-align:center;color:#000'>{{status}}</view>
+
 <view class='time'>
 <image src='../../imgs/power.gif'class='power'></image>
+<view class='num' style='text-align:center;color:#000'>{{status}}</view>
 </view>
