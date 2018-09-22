@@ -9,12 +9,6 @@
   font-size: 32rpx;
   color: #000;
 }
-/* 文字太长就省略 */
-.header text{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 .header view{
   text-align: center;
@@ -264,7 +258,7 @@
 
 .answeritem{
   display: block;
-  width:425rpx;
+  width:422rpx;
   line-height: 85rpx;
   overflow: hidden;
   white-space: nowrap;

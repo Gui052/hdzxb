@@ -3,7 +3,7 @@ const config = require('../../config')
 const util = require('../../utils/util.js')
 const app = getApp()
 
-var queindexs = 10
+var queindexs = 1
 
 const option = {
 	CHOICE_DELAY_SHOW: 1500,//选项延时1.5S显示
@@ -34,7 +34,7 @@ Page({
 	},
 	onLoad(options) {
     //初始化时候设定题目
-    queindexs = 10
+    queindexs = 1
     this.setData({
       queindex: queindexs
     })
@@ -103,7 +103,7 @@ Page({
 
       //给题目数量赋值
       that.setData({
-        queindex: queindexs > 0 ? queindexs : 0
+        queindex: queindexs <= 10 ? queindexs : 10
       })
 
 			let question = res.question
@@ -208,8 +208,8 @@ Page({
 				timerReset = setTimeout(() => {
 					if (!that.data.localClick && !that.data.hasClick) {
 						that.sendAnswer(that)
-            //题目数量减少，赋值和减少不应该同步,如果用户没有点击，一样题目减少
-            queindexs--
+            //题目数量增加，赋值和增加不应该同步,如果用户没有点击，一样题目减少
+            queindexs++
 					}
 				}, 11000)
 			}
@@ -218,8 +218,8 @@ Page({
 	answer(e) {//开始答题
 		const that = this
 		if (!that.data.localClick) {  //防止重新选择答案
-      //题目数量减少，赋值和减少不应该同步
-      queindexs--
+      //题目数量增加，赋值和增加不应该同步
+      queindexs++
 
 			if (e.currentTarget.dataset.right) {//判断答案是否正确
 				that.setData({

@@ -98,7 +98,7 @@
   position: absolute;
   height: 80rpx;
   width: 360rpx;
-  font-size: 36rpx;
+  font-size: 34rpx;
   top: 55%;
   background-color: #ff9046;
   color: #fff;

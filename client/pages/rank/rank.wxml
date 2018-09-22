@@ -26,7 +26,7 @@ module.exports.getRank = getRank;
         </view>
         <view style='width:70%;'>
           <view class='itemDetail'>
-            <text style='font-size:36rpx;color:#000'>{{item.nickName}}</text>
+            <text class='username'>{{item.nickName}}</text>
             <text style='font-size:48rpx;color:rgb(255,107,78)'>{{item.score}}分</text>
           </view>
           <view class='itemDetail'>
@@ -47,7 +47,7 @@ module.exports.getRank = getRank;
         </view>
         <view style='width:70%;'>
           <view class='itemDetail'>
-            <text style='font-size:36rpx;color:#000'>{{item.nickName}}</text>
+            <text class='username'>{{item.nickName}}</text>
             <text style='font-size:48rpx;color:rgb(255,107,78)'>{{item.score}}分</text>
           </view>
           <view class='itemDetail'>
