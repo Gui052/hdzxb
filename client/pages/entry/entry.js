@@ -6,18 +6,23 @@ const app = getApp();
 Page({
 	data: {
 		score: 0,
+    showCenterDialog:false,
 	},
 
 	onLoad(opt) {
 		// app.appData.fromClickId = opt.currentClickId
 		// app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
     //由于好友系统失效，暂时先不更新好友关系
-    this.setData({
-      showCenterDialog: true,
-    });
+    console.log(opt.islogin)
+    if (opt.islogin!='yes')
+    {
+      this.setData({
+        showCenterDialog: true,
+      });
+    }
 
 		wx.showShareMenu({
-			withShareTicket: true
+			withShareTicket: true,
 		})
 	},
 

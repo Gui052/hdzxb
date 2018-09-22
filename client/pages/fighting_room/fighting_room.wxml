@@ -2,7 +2,7 @@
   <view class="animated lightSpeedIn-left {{game_over ? 'gameover-left':''}} {{win==1?'winner' : ''}}">
     <image class='winnerpng' src='../../imgs/winner.png' wx:if="{{win==1}}"></image>
     <image class='header_img' src='{{userInfo_me.avatarUrl}}'></image>
-    <text>{{userInfo_me.nickName}}</text>
+    <text class='username'>{{userInfo_me.nickName}}</text>
     <view wx:if="{{game_over}}">
       <text style='font-size:70rpx'>{{scoreMyself}}</text>分</view>
   </view>
@@ -12,7 +12,7 @@
   <view class="animated lightSpeedIn-right {{game_over ? 'gameover-right':''}} {{win!=2 && win!=1?'winner' : ''}}">
     <image class='winnerpng' src='../../imgs/winner.png' wx:if="{{win!=1 && win!=2}}"></image>
     <image class='header_img' src='{{userInfo_others.avatarUrl}}'></image>
-    <text>{{userInfo_others.nickName}}</text>
+    <text class='username'>{{userInfo_others.nickName}}</text>
     <view wx:if="{{game_over}}">
       <text style='font-size:70rpx'>{{score_others}}</text>分 </view>
   </view>
@@ -40,7 +40,8 @@
       <view wx:for="{{question.answer}}" bindtap='answer' data-index="{{index}}" data-right="{{item.right}}" class="{{index==clickIndex&&clickIndex!=='' ? answerColor : ''}}  {{index==status_users_others.userChoose&&status_users_others.userChoose!=='' ? status_users_others.answerColor : ''}}  {{item.right ? animate_rightAnswer:''}} answer">
         <view class="invisible {{index==clickIndex&&clickIndex!==''&&answerColor=='right' ? 'sign' : ''}}">○</view>
         <view class="invisible {{index==clickIndex&&clickIndex!==''&&answerColor=='error' ? 'sign' : ''}}">×</view>
-        <view style='width:100%;'>{{item.answer}}</view>
+        <!-- <view style='width:100%;'>{{item.answer}}</view> -->
+        <text class='answeritem'>{{item.answer}}</text>
         <view class="invisible {{index==status_users_others.userChoose&&status_users_others.userChoose!==''&&status_users_others.answerColor=='right' ? 'sign' : ''}}" style='left: 80%;'>○</view>
         <view class="invisible {{index==status_users_others.userChoose&&status_users_others.userChoose!==''&&status_users_others.answerColor=='error' ? 'sign' : ''}}" style='left: 80%;'>×</view>
       </view>

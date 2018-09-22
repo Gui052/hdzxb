@@ -58,12 +58,13 @@ Page({
 		const that = this;
 		return {
 			title: '谁才是华电学霸？比比看吧！',
-			path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,
+			// path: `/pages/entry/entry?currentClickId=${app.appData.currentClickId}`,
+      path: `/pages/entry/entry`,
 			success(res) {
 				//转发时向用户关系表中更新一条转发记录(个人为person，群为GId)。
-				require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res)
+				// require('../../utils/upDateShareInfoToUser_network.js').upDateShareInfoToUser_network(app, that, res)//好友系统故障，暂时不加入好友关系
 				wx.redirectTo({
-					url: '../entry/entry'
+					url: '../entry/entry?islogin=yes'
 				})
 			}
 		}
@@ -99,6 +100,12 @@ Page({
 		let getNextQuestions, timerCountdown, timerReset  //定义倒计时定时器，定义重置定时器(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
 		tunnel.on('sendQuestion', (res) => {
 			console.log('收到题目', res)
+
+      //给题目数量赋值
+      that.setData({
+        queindex: queindexs > 0 ? queindexs : 0
+      })
+
 			let question = res.question
 
 			if (Object.getOwnPropertyNames(question).length) {
@@ -181,12 +188,7 @@ Page({
 
 				//（重新）开始倒计时
 				clearInterval(timerCountdown)//获取新题目后,倒计时定时器清空(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
-				let countdown = that.data.countdown;
-
-        //给题目数量赋值
-        that.setData({
-          queindex: queindexs > 0 ? queindexs : 0
-        })
+				let countdown = that.data.countdown;       
 
 				setTimeout(() => {//2S后显示选项和开始倒计时
 					that.setData({ animate_showChoice: 'fadeIn' })
@@ -206,6 +208,8 @@ Page({
 				timerReset = setTimeout(() => {
 					if (!that.data.localClick && !that.data.hasClick) {
 						that.sendAnswer(that)
+            //题目数量减少，赋值和减少不应该同步,如果用户没有点击，一样题目减少
+            queindexs--
 					}
 				}, 11000)
 			}
@@ -282,9 +286,12 @@ Page({
 		}
 	},
 	continue_fighting() {
-		wx.reLaunch({
-			url: '../entry/entry',
-		})
+		// wx.reLaunch({
+		// 	url: '../entry/entry',
+		// })
+    wx.navigateBack({
+      url:'../entry/entry?islogin=yes'
+    })
 	},
 	startAnimate() {
 		const that = this
