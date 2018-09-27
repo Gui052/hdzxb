@@ -13,7 +13,6 @@ Page({
 		// app.appData.fromClickId = opt.currentClickId
 		// app.upDateUser_networkFromClickId = require('../../utils/upDateUser_networkFromClickId.js').upDateUser_networkFromClickId
     //由于好友系统失效，暂时先不更新好友关系
-    console.log(opt.islogin)
     if (opt.islogin!='yes')
     {
       this.setData({

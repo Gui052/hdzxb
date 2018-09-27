@@ -2,6 +2,7 @@ const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
 const util = require('../../utils/util.js')
 const app = getApp()
+var oneReceQuestion = false //获取题目只能有一次，不然会出现正确答案的问题
 
 var queindexs = 1
 
@@ -98,128 +99,138 @@ Page({
 		})
 		//监听服务器端发送过来的问题
 		let getNextQuestions, timerCountdown, timerReset  //定义倒计时定时器，定义重置定时器(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
-		tunnel.on('sendQuestion', (res) => {
-			console.log('收到题目', res)
 
-      //给题目数量赋值
-      that.setData({
-        queindex: queindexs <= 10 ? queindexs : 10
+
+
+      tunnel.on('sendQuestion', (res) => {
+        console.log('收到题目', res)
+        //给题目数量赋值
+        that.setData({
+          queindex: queindexs <= 10 ? queindexs : 10
+        })
+
+        let question = res.question
+
+        if (Object.getOwnPropertyNames(question).length) {
+          question.answer = JSON.parse(question.answer)//将答案转换为js对象
+        }
+
+        //显示对手的答题状态
+        if (res.choicePlayer1[0] !== that.data.userInfo_me.openId) {
+          that.setData({
+            status_users_others: {
+              openId: res.choicePlayer1[0],
+              userChoose: res.choicePlayer1[1],
+              answerColor: res.choicePlayer1[2],
+            },
+            score_others: res.choicePlayer1[3],//对手总分单独拎出来，不更新
+          })
+        } else {
+          that.setData({
+            status_users_others: {
+              openId: res.choicePlayer2[0],
+              userChoose: res.choicePlayer2[1],
+              answerColor: res.choicePlayer2[2],
+            },
+            score_others: res.choicePlayer2[3],//对手总分单独拎出来，不更新
+          })
+        }
+        if(oneReceQuestion==false){
+          oneReceQuestion=true
+
+          that.setData({
+            animate_rightAnswer: 'right',//显示正确答案
+          })
+        }
+        
+        clearTimeout(getNextQuestions)
+        if (Object.getOwnPropertyNames(question).length) {
+          getNextQuestions = setTimeout(function () { //先等待2s查看对方的选择状态，再开始下一题
+            reset(that)//运行重置函数  
+          }, 2000)
+        } else {  //当question中无问题时,即回答完所有问题
+          getNextQuestions = setTimeout(function () { //答完题显示战果
+            if (that.data.scoreMyself > that.data.score_others) {
+              that.setData({
+                game_over: true,
+                win: 1,
+              })
+            } else if (that.data.scoreMyself < that.data.score_others) {
+              that.setData({
+                game_over: true,
+                win: 0,
+              })
+            }
+            else {
+              that.setData({
+                game_over: true
+              })
+            }
+            //将当前用户的比赛结果发送给服务器
+            tunnel.emit('fightingResult', {
+              openId: that.data.userInfo_me.openId,
+              fightingResult: that.data.win
+            })
+          }, 2000)
+        }
+        function reset(that) {//定义重置函数
+          //获取新题目后,倒计时归为10，将clickIndex清空，hasClick改为未选择.
+          that.setData({
+            question,//更新题目
+            animate_showChoice: '',
+            countdown: 10,
+            localClick: false,
+            hasClick: false,
+            clickIndex: '',
+            answerColor: '',
+            //scoreMyself: 0,
+            status_users_others: {
+              openId: '',
+              userChoose: '',
+              answerColor: '',
+              //scoreMyself: 0,
+            },
+            sendNumber: 0,
+            animate_rightAnswer: '',
+          })
+
+          //（重新）开始倒计时
+          clearInterval(timerCountdown)//获取新题目后,倒计时定时器清空(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
+          let countdown = that.data.countdown;       
+
+          setTimeout(() => {//2S后显示选项和开始倒计时
+            that.setData({ animate_showChoice: 'fadeIn' })
+            timerCountdown = setInterval(function () {
+              countdown--
+              that.setData({
+                countdown
+              })
+              if (countdown == 0) {
+                clearInterval(timerCountdown)
+              }
+            }, 1000)
+          }, option.CHOICE_DELAY_SHOW)
+
+          //（重新）设置定时器，若用户未选择答案，10s后也将用户结果发给服务器
+          clearTimeout(timerReset);
+          timerReset = setTimeout(() => {
+            if (!that.data.localClick && !that.data.hasClick) {
+              that.sendAnswer(that)
+              //题目数量增加，赋值和增加不应该同步,如果用户没有点击，一样题目增加
+              queindexs++
+              oneReceQuestion=false
+            }
+          }, 11000)
+        }
       })
-
-			let question = res.question
-
-			if (Object.getOwnPropertyNames(question).length) {
-        question.answer = JSON.parse(question.answer)//将答案转换为js对象
-			}
-
-			//显示对手的答题状态
-			if (res.choicePlayer1[0] !== that.data.userInfo_me.openId) {
-				that.setData({
-					status_users_others: {
-						openId: res.choicePlayer1[0],
-						userChoose: res.choicePlayer1[1],
-						answerColor: res.choicePlayer1[2],
-					},
-					score_others: res.choicePlayer1[3],//对手总分单独拎出来，不更新
-					animate_rightAnswer: 'right',//显示正确答案
-				})
-			} else {
-				that.setData({
-					status_users_others: {
-						openId: res.choicePlayer2[0],
-						userChoose: res.choicePlayer2[1],
-						answerColor: res.choicePlayer2[2],
-					},
-					score_others: res.choicePlayer2[3],//对手总分单独拎出来，不更新
-					animate_rightAnswer: 'right',//显示正确答案
-				})
-			}
-
-			clearTimeout(getNextQuestions)
-			if (Object.getOwnPropertyNames(question).length) {
-				getNextQuestions = setTimeout(function () { //先等待2s查看对方的选择状态，再开始下一题
-					reset(that)//运行重置函数  
-				}, 2000)
-			} else {  //当question中无问题时,即回答完所有问题
-				getNextQuestions = setTimeout(function () { //答完题显示战果
-					if (that.data.scoreMyself > that.data.score_others) {
-						that.setData({
-							game_over: true,
-							win: 1,
-						})
-					} else if (that.data.scoreMyself < that.data.score_others) {
-						that.setData({
-							game_over: true,
-							win: 0,
-						})
-					}
-					else {
-						that.setData({
-							game_over: true
-						})
-					}
-					//将当前用户的比赛结果发送给服务器
-					tunnel.emit('fightingResult', {
-						openId: that.data.userInfo_me.openId,
-						fightingResult: that.data.win
-					})
-				}, 2000)
-			}
-			function reset(that) {//定义重置函数
-				//获取新题目后,倒计时归为10，将clickIndex清空，hasClick改为未选择.
-				that.setData({
-					question,//更新题目
-					animate_showChoice: '',
-					countdown: 10,
-					localClick: false,
-					hasClick: false,
-					clickIndex: '',
-					answerColor: '',
-					//scoreMyself: 0,
-					status_users_others: {
-						openId: '',
-						userChoose: '',
-						answerColor: '',
-						//scoreMyself: 0,
-					},
-					sendNumber: 0,
-					animate_rightAnswer: '',
-				})
-
-				//（重新）开始倒计时
-				clearInterval(timerCountdown)//获取新题目后,倒计时定时器清空(注意：只有将timer_countdown定义在最外边才能清除掉上一个定时器)
-				let countdown = that.data.countdown;       
-
-				setTimeout(() => {//2S后显示选项和开始倒计时
-					that.setData({ animate_showChoice: 'fadeIn' })
-					timerCountdown = setInterval(function () {
-						countdown--
-						that.setData({
-							countdown
-						})
-						if (countdown == 0) {
-							clearInterval(timerCountdown)
-						}
-					}, 1000)
-				}, option.CHOICE_DELAY_SHOW)
-
-				//（重新）设置定时器，若用户未选择答案，10s后也将用户结果发给服务器
-				clearTimeout(timerReset);
-				timerReset = setTimeout(() => {
-					if (!that.data.localClick && !that.data.hasClick) {
-						that.sendAnswer(that)
-            //题目数量增加，赋值和增加不应该同步,如果用户没有点击，一样题目减少
-            queindexs++
-					}
-				}, 11000)
-			}
-		})
 	},
 	answer(e) {//开始答题
 		const that = this
 		if (!that.data.localClick) {  //防止重新选择答案
       //题目数量增加，赋值和增加不应该同步
       queindexs++
+      //这里重置可以获取题目
+      oneReceQuestion == false
 
 			if (e.currentTarget.dataset.right) {//判断答案是否正确
 				that.setData({
