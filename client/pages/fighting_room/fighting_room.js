@@ -135,7 +135,7 @@ Page({
             score_others: res.choicePlayer2[3],//对手总分单独拎出来，不更新
           })
         }
-        
+
         if(oneReceQuestion==false){
           oneReceQuestion=true
 
@@ -298,9 +298,6 @@ Page({
 		}
 	},
 	continue_fighting() {
-		// wx.reLaunch({
-		// 	url: '../entry/entry',
-		// })
     wx.navigateBack({
       url:'../entry/entry?islogin=yes'
     })

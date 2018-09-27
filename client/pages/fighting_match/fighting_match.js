@@ -9,7 +9,6 @@ Page({
     number: 0,
   },
   onLoad: function (opt) {
-    this.matchTimeRun()
     app.pageGetUserInfo(this, match(this, app, opt,false))//开始匹配
   }
 })
