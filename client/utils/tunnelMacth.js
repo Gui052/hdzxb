@@ -1,8 +1,7 @@
 const util = require('./util.js')
-var isMatch = false //记录匹是否已经匹配,防止两次跳导致界面卡死
 
-function match(page, app, opt) {
-  isMatch = false //初始化是否匹配
+function match(page, app, opt, ismatch) {
+  var isMatch = ismatch //记录匹是否已经匹配,防止两次跳导致界面卡死
   const that = page
   if (app.appData.tunnelStatus !== 'close') {
     app.tunnel.close()

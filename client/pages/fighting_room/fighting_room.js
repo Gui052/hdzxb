@@ -135,6 +135,7 @@ Page({
             score_others: res.choicePlayer2[3],//对手总分单独拎出来，不更新
           })
         }
+        
         if(oneReceQuestion==false){
           oneReceQuestion=true
 

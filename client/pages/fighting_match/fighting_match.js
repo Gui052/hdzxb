@@ -10,15 +10,6 @@ Page({
   },
   onLoad: function (opt) {
     this.matchTimeRun()
-    app.pageGetUserInfo(this, match(this, app, opt))//开始匹配
-  },
-  matchTimeRun() {
-    let number = 1;
-    let time = setInterval(() => {
-      this.setData({
-        number
-      })
-      number++
-    }, 1000)
-  },
+    app.pageGetUserInfo(this, match(this, app, opt,false))//开始匹配
+  }
 })
