@@ -1,4 +1,4 @@
-<import src="../Model/showTrophy.wxml" />
+<!-- <import src="../Model/showTrophy.wxml" /> -->
 
 <wxs module="m1">
 var getRank = function(array,score) {

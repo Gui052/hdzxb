@@ -19,6 +19,8 @@ Page({
     app.pageGetUserInfo(this)
     this.getRankGlobalData();
     let that = this;
+    
+    //这里展示华电60校庆图标
     setTimeout(function () {
       //要延时执行的代码
       that.setData({

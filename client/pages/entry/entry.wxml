@@ -24,13 +24,13 @@
       <image src='../../imgs/entry_fighting.jpg'></image>
     </view>
 
-    <view class='choose' bindtap='gotoFriends'>
+    <!-- <view class='choose' bindtap='gotoFriends'>
       <view class='text-left'>
         <text style='font-size: 40rpx;'>好友对战</text>
         <text style='font-size: 36rpx;opacity:0.5'>Invitation</text>
       </view>
       <image src='../../imgs/entry_friends.jpg'></image>
-    </view>
+    </view> -->
 
     <view class='choose' bindtap='gotoRank'>
       <view class='text-right'>
@@ -41,4 +41,5 @@
     </view>
 
   </view>
+
 </view>

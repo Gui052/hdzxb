@@ -93,7 +93,8 @@ Page({
 			util.showSuccess(res.message)
 			that.setData({
 				game_over: true,
-				win: 1,
+				//win: 1,
+        win: 2, //更改测略，逃跑不计分
 			})
 			app.tunnel.close()
 		})

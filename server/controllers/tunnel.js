@@ -247,12 +247,20 @@ const tools = {//工具对象，包含常用数据和函数
     } else {
       openIdWin = room.player1
     }
-    //更新得分
-    this.updateScore(openIdWin, 1)
+    // //更新得分
+    // this.updateScore(openIdWin, 1)
+    // this.updateScore(openIdFail, 0)
+    // //存储比赛结果
+    // this.storeFightingRecord(openIdWin, 1, true)
+    // this.storeFightingRecord(openIdFail, 0, true)
+
+    //更新得分 策略更新，逃跑减分，赢家不加分
+    this.updateScore(openIdWin, 2)
     this.updateScore(openIdFail, 0)
     //存储比赛结果
-    this.storeFightingRecord(openIdWin, 1, true)
+    this.storeFightingRecord(openIdWin, 2, true)
     this.storeFightingRecord(openIdFail, 0, true)
+
     //通知赢家对方已逃跑
     if (players[openId]) {
       if (players[openId].roomName) {
