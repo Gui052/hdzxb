@@ -12,19 +12,35 @@ module.exports = async (ctx, next) => {
       value.score = val.score
       arr[i] = value
     })
-    function hashRemoveRepeat(arr) {  //去重函数
-      var hash = {},
-        len = arr.length,
-        result = [];
-      for (var i = 0; i < len; i++) {
-        if (!hash[arr[i].openId]) {
-          hash[arr[i].openId] = true;
-          result.push(arr[i]);
-        }
-      }
-      return result;
+
+    if (ctx.query.openId == 'ooVn94_A2qtykb7dprjGXeyGnaps') {
+      let admin = '{"nickName":"嘿，学霸","city":"管理员：恭喜你获得奖品，你的唯一标识码为Nadmin，请于29日下午到数理系学生工作办公室(教七204倪东老师处)领取，如有问题请致电0312-7525065","avatarUrl":"http://101.200.41.95/images/logo.png"}'
+      let value = JSON.parse(admin)
+      value.score = '1028'
+      arr[1] = value
     }
-    arr = hashRemoveRepeat(arr)
+
+    if (ctx.query.openId == 'ooVn945beG0NuZPNgOyyI4TQ9bWY') {
+      let admin = '{"nickName":"嘿，学霸","city":"管理员：恭喜你获得奖品，你的唯一标识码为N1001，请于29日下午到数理系学生工作办公室(教七204倪东老师处)领取，如有问题请致电0312-7525065","avatarUrl":"http://101.200.41.95/images/logo.png"}'
+      let value = JSON.parse(admin)
+      value.score = '1028'
+      arr[1] = value
+    }
+
+    if (ctx.query.openId == 'ooVn942WdgQhpYyYPB38ZTx9GeIw') {
+      let admin = '{"nickName":"嘿，学霸","city":"管理员：恭喜你获得奖品，你的唯一标识码为N1011，请于29日下午到数理系学生工作办公室(教七204倪东老师处)领取，如有问题请致电0312-7525065","avatarUrl":"http://101.200.41.95/images/logo.png"}'
+      let value = JSON.parse(admin)
+      value.score = '1028'
+      arr[1] = value
+    }
+
+    if (ctx.query.openId == 'ooVn9487alcshw38pS7u57Qfde64') {
+      let admin = '{"nickName":"嘿，学霸","city":"管理员：恭喜你获得奖品，你的唯一标识码为N1101，请于29日下午到数理系学生工作办公室(教七204倪东老师处)领取，如有问题请致电0312-7525065","avatarUrl":"http://101.200.41.95/images/logo.png"}'
+      let value = JSON.parse(admin)
+      value.score = '1028'
+      arr[1] = value
+    }
+    
     arr.sort(function (a, b) {
       return b.score - a.score
     })
